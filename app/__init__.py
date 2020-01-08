@@ -10,17 +10,10 @@ api = Api(app)
 db = SQLAlchemy(app)
 
 from .resources import RouteResource, RouteListResource
+from .extract import populate_db
 
 api.add_resource(RouteResource, "/routes/<int:route_id>/")
 api.add_resource(RouteListResource, "/routes/")
-
-from .extract import populate_db
-
-
-class Routes(Resource):
-    def get(self):
-        return {"hello": "world"}
-
 
 app.cli.add_command(populate_db)
 
